@@ -29,7 +29,21 @@ namespace MovieAPIDemo.Controllers
             try
             {
                 var movieCount = _context.Movies.Count();
-                var movieList = _context.Movies.Include(x => x.Persons).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+                var movieList = _context.Movies.Include(x => x.Persons).Skip(pageIndex * pageSize).Take(pageSize).Select(x => new MovieListViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Persons = x.Persons.Select(z => new ActorViewModel
+                    {
+                        Id = z.Id,
+                        Name = z.Name,
+                        DateOfBirth = z.DateOfBirth
+
+                    }).ToList(),
+                    CoverImage = x.CoverImage,
+                    Language = x.Language,
+                    ReleaseDate = x.ReleaseDate
+                }).ToList();
 
 
                 response.Status = true;
@@ -53,7 +67,22 @@ namespace MovieAPIDemo.Controllers
 
             try
             {
-                var movie = _context.Movies.Include(x => x.Persons).Where(x => x.Id == id).FirstOrDefault();
+                var movie = _context.Movies.Include(x => x.Persons).Where(x => x.Id == id).Select(x => new MovieDetailsViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Persons = x.Persons.Select(z => new ActorViewModel
+                    {
+                        Id = z.Id,
+                        Name = z.Name,
+                        DateOfBirth = z.DateOfBirth
+
+                    }).ToList(),
+                    CoverImage = x.CoverImage,
+                    Language = x.Language,
+                    ReleaseDate = x.ReleaseDate
+                }).FirstOrDefault();
                 if (movie == null)
                 {
                     response.Status = false;
@@ -105,9 +134,25 @@ namespace MovieAPIDemo.Controllers
                     _context.Movies.Add(postedModel);
                     _context.SaveChanges();
 
+                    var responseData = new MovieDetailsViewModel
+                    {
+                        Id = postedModel.Id,
+                        Title = postedModel.Title,
+                        Description = postedModel.Description,
+                        Persons = postedModel.Persons.Select(z => new ActorViewModel
+                        {
+                            Id = z.Id,
+                            Name = z.Name,
+                            DateOfBirth = z.DateOfBirth
+
+                        }).ToList(),
+                        CoverImage = postedModel.CoverImage,
+                        Language = postedModel.Language,
+                        ReleaseDate = postedModel.ReleaseDate
+                    };
                     response.Status = true;
                     response.Message = "Success";
-                    response.Data = postedModel;
+                    response.Data = responseData;
                     return Ok(response);
                 }
                 else
@@ -178,7 +223,22 @@ namespace MovieAPIDemo.Controllers
                         movieDetails.Persons.Add(person);
                     }
                     _context.SaveChanges();
+                    var responseData = new MovieDetailsViewModel
+                    {
+                        Id = movieDetails.Id,
+                        Title = movieDetails.Title,
+                        Description = movieDetails.Description,
+                        Persons = movieDetails.Persons.Select(z => new ActorViewModel
+                        {
+                            Id = z.Id,
+                            Name = z.Name,
+                            DateOfBirth = z.DateOfBirth
 
+                        }).ToList(),
+                        CoverImage = movieDetails.CoverImage,
+                        Language = movieDetails.Language,
+                        ReleaseDate = movieDetails.ReleaseDate
+                    };
                     response.Status = true;
                     response.Message = "Updated Successfuly";
                     response.Data = movieDetails;
