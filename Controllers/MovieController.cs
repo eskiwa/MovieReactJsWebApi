@@ -241,7 +241,7 @@ namespace MovieAPIDemo.Controllers
                     };
                     response.Status = true;
                     response.Message = "Updated Successfuly";
-                    response.Data = movieDetails;
+                    response.Data = responseData;
                     return Ok(response);
                 }
                 else
