@@ -135,3 +135,4 @@ C:\Users\imudu\.vscode\FINALLLLLLLLLLLLLL\MovieAPIDemo\obj\Debug\net8.0\refint\M
 C:\Users\imudu\.vscode\FINALLLLLLLLLLLLLL\MovieAPIDemo\obj\Debug\net8.0\MovieAPIDemo.pdb
 C:\Users\imudu\.vscode\FINALLLLLLLLLLLLLL\MovieAPIDemo\obj\Debug\net8.0\MovieAPIDemo.genruntimeconfig.cache
 C:\Users\imudu\.vscode\FINALLLLLLLLLLLLLL\MovieAPIDemo\obj\Debug\net8.0\ref\MovieAPIDemo.dll
+C:\Users\imudu\.vscode\FINALLLLLLLLLLLLLL\MovieAPIDemo\obj\Debug\net8.0\MovieAPIDemo.sourcelink.json

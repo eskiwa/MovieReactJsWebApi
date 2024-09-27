@@ -10,8 +10,9 @@ using MovieAPIDemo.Models;
 
 namespace MovieAPIDemo.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+
     public class MovieController : ControllerBase
     {
         private readonly MovieDbContext _context;

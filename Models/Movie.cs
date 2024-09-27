@@ -9,7 +9,7 @@ namespace MovieAPIDemo.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public int Description { get; set; }
+        public string Description { get; set; }
         //List of actors
         public ICollection<Person> Persons { get; set; }
         public string Language { get; set; }
